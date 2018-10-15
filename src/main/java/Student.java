@@ -23,8 +23,9 @@ public class Student {
     private Date nationality;
 
 
-    @OneToMany(mappedBy = "student_id")
+    @OneToMany(mappedBy = "student_payments_id")
     private List student_payments;
+    @OneToMany(mappedBy = "student_groups_id")
     private List student_groups;
 
     public Long getId() {
