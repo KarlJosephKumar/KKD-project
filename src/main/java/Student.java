@@ -68,13 +68,20 @@ public class Student {
     }
 
     public List getStudents() {
-        return students;
+        return student_payments;
     }
 
-    public void setStudents(List students) {
-        this.students = students;
+    public void setStudents(List student_payments) {
+        this.student_payments = student_payments;
     }
 
+    public List getStudent_groups() {
+        return student_groups;
+    }
+
+    public void setStudent_groups(List student_groups) {
+        this.student_groups = student_groups;
+    }
 
     @Override
     public String toString() {
@@ -84,7 +91,8 @@ public class Student {
                 ", surname='" + surname + '\'' +
                 ", date_of_birth=" + date_of_birth +
                 ", nationality=" + nationality +
-                ", students=" + students +
+                ", student_payments=" + student_payments +
+                ", student_groups=" + student_groups +
                 '}';
     }
 }
