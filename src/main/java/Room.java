@@ -22,12 +22,10 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room{" +
-                "id=" + id +
-                ", address=" + address +
-                ", roomCapacity=" + roomCapacity +
-                ", address=" + address +
-                '}';
+        return "Room: " +
+                "id: " + id +
+                ", address: " + address +
+                ", roomCapacity: " + roomCapacity;
     }
 
     public void room(){

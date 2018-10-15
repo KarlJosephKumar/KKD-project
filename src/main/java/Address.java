@@ -1,5 +1,4 @@
 import javax.persistence.*;
-import java.security.AlgorithmParameterGenerator;
 
 @Entity
 @Table(name = "address")
@@ -18,24 +17,15 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
-                "id=" + id +
-                ", nameOfCity='" + nameOfCity + '\'' +
-                ", street='" + street + '\'' +
-                ", streetNumber=" + streetNumber +
-                '}';
+        return "Address: " +
+                "id: " + id +
+                ", nameOfCity: " + nameOfCity +
+                ", street: " + street  +
+                ", streetNumber: " + streetNumber;
     }
-
-//    @OneToOne(mappedBy = "address", cascade = CascadeType.ALL,
-//    fetch = FetchType.LAZY, optional = false)
-//    private Room room;
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNameOfCity() {
