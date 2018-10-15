@@ -1,2 +1,2 @@
-public class payments {
+public class Payments {
 }

@@ -1,2 +1,2 @@
-public class student_group {
+public class Student_group {
 }
