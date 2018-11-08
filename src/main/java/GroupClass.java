@@ -9,7 +9,7 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(
                 name = "get_all_by_Class_id",
-                query = "select r from Room r where id = :id"
+                query = "select r from GroupClass r where id = :id"
         )
 })
 
@@ -25,14 +25,14 @@ public class GroupClass implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Room room;
 
-    //@Column(name = "date_start")
+    @Column(name = "date_start")
     private Date dateStart;
 
-   // @Column(name = "date_finish")
+    @Column(name = "date_finish")
     private Date dateFinish;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "classes")
-    private Set<Course> course_id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Course course;
 
 
 
@@ -44,7 +44,7 @@ public class GroupClass implements Serializable {
                 ", room=" + room +
                 ", dateStart=" + dateStart +
                 ", dateFinish=" + dateFinish +
-                ", course_id=" + course_id +
+                ", course_id=" + course +
                 '}';
     }
 
@@ -88,11 +88,11 @@ public class GroupClass implements Serializable {
         this.dateFinish = dateFinish;
     }
 
-    public Set<Course> getCourse_id() {
-        return course_id;
+    public Course getCourse_id() {
+        return course;
     }
 
-    public void setCourse_id(Set<Course> course_id) {
-        this.course_id = course_id;
+    public void setCourse_id(Course course) {
+        this.course = course;
     }
 }

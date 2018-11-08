@@ -15,9 +15,9 @@ public class Payments {
     @JoinColumn(name="student_id")
     private Student student;
 
-//    @ManyToOne(fetch=FetchType.LAZY)
-//    @JoinColumn(name="course_id")
-//    //private Course course;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="course_id")
+    private Course course;
 
     @Override
     public String toString() {

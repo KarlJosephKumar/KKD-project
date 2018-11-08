@@ -1,5 +1,6 @@
 import javax.persistence.*;
 import java.io.Serializable;
+import java.security.acl.Group;
 import java.sql.Date;
 import java.util.List;
 import java.util.Set;
@@ -40,7 +41,7 @@ public class Student implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "class_id",
  referencedColumnName = "id" )}
     )
-    private List <Class> classes;
+    private List <GroupClass> groupClass;
 
     public Long getId() {
         return id;
@@ -90,14 +91,13 @@ public class Student implements Serializable {
         this.payments = payments;
     }
 
+    public List<GroupClass> getGroupClass() {
+        return groupClass;
+    }
 
-//    public Set<Class> getClasses() {
-//        return classes;
-//    }
-//
-//    public void setClasses(Set<Class> classes) {
-//        this.classes = classes;
-//    }
+    public void setGroupClass(List<GroupClass> groupClass) {
+        this.groupClass = groupClass;
+    }
 
     @Override
     public String toString() {
@@ -108,7 +108,7 @@ public class Student implements Serializable {
                 ", date_of_birth=" + date_of_birth +
                 ", nationality=" + nationality +
                 ", payments=" + payments +
-                ", classes=" + classes +
+                ", classes=" + groupClass +
                 '}';
     }
 }

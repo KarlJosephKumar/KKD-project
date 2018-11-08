@@ -198,3 +198,5 @@ create procedure insert_student_class(
 
 call insert_payments(7, 1, 1800.00);
 
+select * from room;
+select * from class;
