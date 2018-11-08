@@ -92,7 +92,7 @@ public class GroupClass implements Serializable {
         return course;
     }
 
-    public void setCourse_id(Course course) {
+    public void setCourse_id(Course course_id) {
         this.course = course;
     }
 }

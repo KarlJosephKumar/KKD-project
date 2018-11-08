@@ -17,7 +17,7 @@ public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "name")
     private String name;
@@ -29,7 +29,7 @@ public class Student implements Serializable {
     private Date date_of_birth;
 
     @Column(name = "nationality")
-    private Date nationality;
+    private String nationality;
 
 
     @OneToMany(mappedBy = "student")
@@ -43,11 +43,11 @@ public class Student implements Serializable {
     )
     private List <GroupClass> groupClass;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -75,11 +75,11 @@ public class Student implements Serializable {
         this.date_of_birth = date_of_birth;
     }
 
-    public Date getNationality() {
+    public String getNationality() {
         return nationality;
     }
 
-    public void setNationality(Date nationality) {
+    public void setNationality(String nationality) {
         this.nationality = nationality;
     }
 

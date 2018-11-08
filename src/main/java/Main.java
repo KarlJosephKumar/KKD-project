@@ -1,9 +1,9 @@
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
-import java.util.List;
+import java.security.acl.Group;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -12,19 +12,25 @@ public class Main {
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
 
-//        Course room = session
-//                .createNamedQuery("get_all_by_Course_id", Course.class)
+//        Room room = session
+//                .createNamedQuery("get_all_by_id", Room.class)
 //                .setParameter("id", 1).getSingleResult();
 
             String hql = "select pr from Room pr";
 
+//            GroupClass groupClass = session
+//                    .createNamedQuery("get_all_by_Class_id", GroupClass.class)
+//                    .setParameter("id", 1).getSingleResult();
 
+            Student student = session
+                    .createNamedQuery("get_all_by_Student_id", Student.class)
+                    .setParameter("id", 1).getSingleResult();
 
             //Query student = session.createQuery("select Student.name from Student s where s.id = 1 ").getSingleResult();
 
-            List <Student> student = session
-                .createNamedQuery("get_all_by_Student_id", Student.class)
-                    .getResultList();
+//            List <Student> student = session
+//                .createNamedQuery("get_all_by_Student_id", Student.class)
+//                    .getResultList();
 
             //session.persist(student);
             System.out.println(student);
