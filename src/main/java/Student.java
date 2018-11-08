@@ -1,9 +1,10 @@
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
-@Entity
+@Entity(name = "JoinTableStudentClass")
 @Table(name = "student")
 @NamedQueries({
         @NamedQuery(
@@ -11,10 +12,10 @@ import java.util.Set;
                 query = "select s from Student s where id = :id"
         )
 })
-public class Student {
+public class Student implements Serializable {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
@@ -32,13 +33,14 @@ public class Student {
 
     @OneToMany(mappedBy = "student")
     private List<Payments> payments;
-//    @ManyToMany
-//    @JoinTable(
-//            name = "student_class",
-//            joinColumns = {@JoinColumn(name = "student_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "class_id")}
-//    )
-//    private List <Class> classes;
+    @ManyToMany
+    @JoinTable(
+            name = "student_class",
+            joinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "class_id",
+ referencedColumnName = "id" )}
+    )
+    private List <Class> classes;
 
     public Long getId() {
         return id;
@@ -106,7 +108,7 @@ public class Student {
                 ", date_of_birth=" + date_of_birth +
                 ", nationality=" + nationality +
                 ", payments=" + payments +
-                //", classes=" + classes +
+                ", classes=" + classes +
                 '}';
     }
 }

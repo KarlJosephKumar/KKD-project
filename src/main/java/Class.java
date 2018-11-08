@@ -1,13 +1,19 @@
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-@Entity
-@Table(name= "course")
+@Entity(name = "JoinTableStudentClass")
+@Table(name= "class")
 
-public class Class {
+@NamedQueries({
+        @NamedQuery(
+                name = "get_all_by_id",
+                query = "select r from Room r where id = :id"
+        )
+})
 
-
+public class Class implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +33,8 @@ public class Class {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "classes")
     private Set<Course> course_id;
+
+
 
     @Override
     public String toString() {
