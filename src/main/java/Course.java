@@ -2,17 +2,30 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "course")
+@NamedQueries({
+        @NamedQuery(
+                name = "get_all_by_Course_id",
+                query = "select s from Course s where id = 1"
+        )
+})
 public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "topic")
     private String topic;
 
+    @Column(name = "level")
     private String level;
+
+    @ManyToOne
+    private Class classes;
+
 
     @Override
     public String toString() {
@@ -54,4 +67,6 @@ public class Course {
     public void setLevel(String level) {
         this.level = level;
     }
+
+
 }

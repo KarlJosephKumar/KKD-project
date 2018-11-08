@@ -2,6 +2,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "address")
+@NamedQueries({
+        @NamedQuery(
+                name = "get_all_by_Address_id",
+                query = "select s from Address s where id = :id"
+        )
+})
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

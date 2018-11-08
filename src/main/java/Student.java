@@ -1,13 +1,20 @@
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "student")
+@NamedQueries({
+        @NamedQuery(
+                name = "get_all_by_Student_id",
+                query = "select s from Student s where id = :id"
+        )
+})
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
@@ -23,10 +30,15 @@ public class Student {
     private Date nationality;
 
 
-    @OneToMany(mappedBy = "student_payments_id")
-    private List student_payments;
-    @OneToMany(mappedBy = "student_groups_id")
-    private List student_groups;
+    @OneToMany(mappedBy = "student")
+    private List<Payments> payments;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "student_class",
+//            joinColumns = {@JoinColumn(name = "student_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "class_id")}
+//    )
+//    private List <Class> classes;
 
     public Long getId() {
         return id;
@@ -68,21 +80,22 @@ public class Student {
         this.nationality = nationality;
     }
 
-    public List getStudents() {
-        return student_payments;
+    public List<Payments> getPayments() {
+        return payments;
     }
 
-    public void setStudents(List student_payments) {
-        this.student_payments = student_payments;
+    public void listPayments(List<Payments> payments) {
+        this.payments = payments;
     }
 
-    public List getStudent_groups() {
-        return student_groups;
-    }
 
-    public void setStudent_groups(List student_groups) {
-        this.student_groups = student_groups;
-    }
+//    public Set<Class> getClasses() {
+//        return classes;
+//    }
+//
+//    public void setClasses(Set<Class> classes) {
+//        this.classes = classes;
+//    }
 
     @Override
     public String toString() {
@@ -92,8 +105,8 @@ public class Student {
                 ", surname='" + surname + '\'' +
                 ", date_of_birth=" + date_of_birth +
                 ", nationality=" + nationality +
-                ", student_payments=" + student_payments +
-                ", student_groups=" + student_groups +
+                ", payments=" + payments +
+                //", classes=" + classes +
                 '}';
     }
 }
