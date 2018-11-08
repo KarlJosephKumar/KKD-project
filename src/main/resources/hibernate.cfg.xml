@@ -13,7 +13,7 @@
         <mapping class="Room"/>
         <mapping class="Student"/>
         <mapping class="Payments"/>
-        <mapping class="Class"/>
+        <mapping class="GroupClass"/>
         <mapping class="Course"/>
         <mapping class="Schedule"/>
 

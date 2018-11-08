@@ -8,12 +8,12 @@ import java.util.Set;
 
 @NamedQueries({
         @NamedQuery(
-                name = "get_all_by_id",
+                name = "get_all_by_Class_id",
                 query = "select r from Room r where id = :id"
         )
 })
 
-public class Class implements Serializable {
+public class GroupClass implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +38,7 @@ public class Class implements Serializable {
 
     @Override
     public String toString() {
-        return "Class{" +
+        return "GroupClass{" +
                 "id=" + id +
                 ", schedule=" + schedule +
                 ", room=" + room +
