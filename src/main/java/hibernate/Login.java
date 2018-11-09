@@ -8,6 +8,10 @@ import javax.persistence.*;
         @NamedQuery(
                 name = "get_password_by_Login_username",
                 query = "select l.password from Login l where username = :username"
+        ),
+        @NamedQuery(
+                name = "get_id_by_Login_username",
+                query = "select l.id from Login l where username = :username"
         )
 })
 public class Login {

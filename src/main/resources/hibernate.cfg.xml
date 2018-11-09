@@ -7,15 +7,17 @@
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate_project?serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.password">Derpherp123</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
-        <mapping class="Address"/>
-        <mapping class="Room"/>
-        <mapping class="Student"/>
-        <mapping class="Payments"/>
-        <mapping class="GroupClass"/>
-        <mapping class="Course"/>
-        <mapping class="Schedule"/>
+        <mapping class="hibernate.Address"/>
+        <mapping class="hibernate.Room"/>
+        <mapping class="hibernate.Student"/>
+        <mapping class="hibernate.Payments"/>
+        <mapping class="hibernate.GroupClass"/>
+        <mapping class="hibernate.Course"/>
+        <mapping class="hibernate.Schedule"/>
+        <mapping class="hibernate.Login"/>
+        <mapping class="hibernate.Session"/>
 
     </session-factory>
 </hibernate-configuration>

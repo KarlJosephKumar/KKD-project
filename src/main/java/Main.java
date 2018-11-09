@@ -1,9 +1,7 @@
+import hibernate.Payments;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,24 +10,24 @@ public class Main {
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
 
-//        Course room = session
-//                .createNamedQuery("get_all_by_Course_id", Course.class)
+//        hibernate.Course room = session
+//                .createNamedQuery("get_all_by_Course_id", hibernate.Course.class)
 //                .setParameter("id", 1).getSingleResult();
-//            List<Course> courses = session
-//                    .createNamedQuery("get_all_by_Course_id", Course.class)
+//            List<hibernate.Course> courses = session
+//                    .createNamedQuery("get_all_by_Course_id", hibernate.Course.class)
 //                    .getResultList();
 
-            String hql = "select pr from Room pr";
+            String hql = "select pr from hibernate.Room pr";
 
 
             Payments payments = session
                     .createNamedQuery("get_all_by_Payments_id", Payments.class)
                     .setParameter("id", 1).getSingleResult();
 
-            //Query student = session.createQuery("select Student.name from Student s where s.id = 1 ").getSingleResult();
+            //Query student = session.createQuery("select hibernate.Student.name from hibernate.Student s where s.id = 1 ").getSingleResult();
 
-//            List <Student> student = session
-//                .createNamedQuery("get_all_by_Student_id", Student.class)
+//            List <hibernate.Student> student = session
+//                .createNamedQuery("get_all_by_Student_id", hibernate.Student.class)
 //                    .getResultList();
 
             //session.persist(student);
