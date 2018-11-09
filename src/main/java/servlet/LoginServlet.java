@@ -7,16 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-
-public class LoginServlet extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/newUser.jsp");
-        requestDispatcher.forward(req, resp);
-    }
+public class LoginServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,7 +25,4 @@ public class LoginServlet extends HttpServlet {
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/newUser.jsp");
         requestDispatcher.forward(req, resp);
-    }
-
-
 }

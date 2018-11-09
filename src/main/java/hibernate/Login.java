@@ -1,10 +1,12 @@
+package hibernate;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "login")
 @NamedQueries({
         @NamedQuery(
-                name = "get_all_by_Login_id",
+                name = "get_password_by_Login_username",
                 query = "select l.password from Login l where username = :username"
         )
 })
