@@ -42,4 +42,29 @@ public class HibernateMethods {
         }
         return false;
     }
+
+    public int checkId(String username) {
+
+
+        try{
+            SessionFactory sessionFactory = Config.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            Login userId = session
+                    .createNamedQuery("get_id_by_Login_username", Login.class)
+                    .setParameter("username", username).getSingleResult();
+
+            return userId.getId();
+
+        }catch (Exception e) {
+                    e.printStackTrace();
+        }
+        return 0;
+    }
+
+
+
+
+
 }
