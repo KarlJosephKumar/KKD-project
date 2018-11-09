@@ -197,6 +197,11 @@ create procedure insert_student_class(
   end;
 
 call insert_payments(7, 1, 1800.00);
+use database hibernate_project;
+
+
+
+ALTER TABLE course DROP COLUMN classes_id;
 
 select * from room;
 select * from class;

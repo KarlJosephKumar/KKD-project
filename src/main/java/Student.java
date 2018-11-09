@@ -107,8 +107,6 @@ public class Student implements Serializable {
                 ", surname='" + surname + '\'' +
                 ", date_of_birth=" + date_of_birth +
                 ", nationality=" + nationality +
-                ", payments=" + payments +
-                ", classes=" + groupClass +
                 '}';
     }
 }

@@ -5,7 +5,11 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = "get_all_by_Course_id",
-                query = "select s from Course s where id = 1"
+                query = "select s from Course s where id= :id "
+        ),
+        @NamedQuery(
+                name = "get_all_Course_id",
+                query = "select s from Course s "
         )
 })
 public class Course {
@@ -24,7 +28,7 @@ public class Course {
     private String level;
 
     @ManyToOne
-    private Class classes;
+    private GroupClass classes;
 
 
     @Override
