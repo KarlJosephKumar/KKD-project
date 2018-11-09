@@ -1,5 +1,4 @@
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Table(name = "session")
@@ -25,7 +24,7 @@ public class Session {
         return "Session{" +
                 "id=" + id +
                 ", session_key='" + session_key + '\'' +
-                ", login=" + login +
+//                ", login=" + login +
                 '}';
     }
 
