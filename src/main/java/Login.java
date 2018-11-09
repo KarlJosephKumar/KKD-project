@@ -15,10 +15,10 @@ public class Login {
     private int id;
 
     @Column(name = "username")
-    private String nameOfCity;
+    private String username;
 
     @Column(name = "password")
-    private int streetNumber;
+    private int password;
 
     public int getId() {
         return id;
@@ -28,19 +28,19 @@ public class Login {
         this.id = id;
     }
 
-    public String getNameOfCity() {
-        return nameOfCity;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNameOfCity(String nameOfCity) {
-        this.nameOfCity = nameOfCity;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public int getStreetNumber() {
-        return streetNumber;
+    public int getPassword() {
+        return password;
     }
 
-    public void setStreetNumber(int streetNumber) {
-        this.streetNumber = streetNumber;
+    public void setPassword(int password) {
+        this.password = password;
     }
 }
