@@ -7,7 +7,7 @@ Create script to create database
 
 Create Java App (using Hibernate proj)
 
-Singleton Session Factory
+Singleton hibernate.Session Factory
 
 Entities (create hibernate class for each table using @Entities) 
 
@@ -18,5 +18,5 @@ Entities (create hibernate class for each table using @Entities)
 
 	Create a group
 	Assign a group to course
-	How much money I get from course(add invoice value to "Payments")
+	How much money I get from course(add invoice value to "hibernate.Payments")
 	
