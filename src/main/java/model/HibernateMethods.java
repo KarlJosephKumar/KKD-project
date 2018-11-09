@@ -10,6 +10,18 @@ import org.hibernate.Transaction;
 
 public class HibernateMethods {
 
+    public static HibernateMethods hibernateMethods;
+
+    public HibernateMethods(){
+    }
+
+    public static HibernateMethods getInstance(){
+        if(hibernateMethods == null){
+            hibernateMethods = new HibernateMethods();
+        }
+        return hibernateMethods;
+    }
+
     public boolean LoginCheck(String username, String password) {
         try {
             SessionFactory sessionFactory = Config.getSessionFactory();
