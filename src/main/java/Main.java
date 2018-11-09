@@ -22,8 +22,8 @@ public class Main {
             String hql = "select pr from Room pr";
 
 
-            Student student = session
-                    .createNamedQuery("get_all_by_Student_id", Student.class)
+            Payments payments = session
+                    .createNamedQuery("get_all_by_Payments_id", Payments.class)
                     .setParameter("id", 1).getSingleResult();
 
             //Query student = session.createQuery("select Student.name from Student s where s.id = 1 ").getSingleResult();
@@ -33,7 +33,7 @@ public class Main {
 //                    .getResultList();
 
             //session.persist(student);
-            System.out.println(student);
+            System.out.println(payments);
 
 
             transaction.commit();

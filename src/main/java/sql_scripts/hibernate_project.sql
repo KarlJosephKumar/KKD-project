@@ -211,7 +211,7 @@ create table login (id int primary key auto_increment
 ,password varchar(40) not null);
 
 create table session (id int primary key auto_increment
-,session_key varchar(32) not null unique
+,session_key varchar(50) not null unique
 ,user_id int not null
 ,constraint session_user_id_fk
   foreign key (user_id) references login (id));

@@ -32,7 +32,7 @@ public class Student implements Serializable {
     private String nationality;
 
 
-    @OneToMany(mappedBy = "student")
+    @ManyToMany(mappedBy = "student")
     private List<Payments> payments;
     @ManyToMany
     @JoinTable(
