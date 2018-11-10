@@ -1,3 +1,5 @@
+
+import hibernate.Config;
 import hibernate.Payments;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -5,7 +5,7 @@ import hibernate.Login;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
+import org.hibernate.query.Query;
 
 
 public class HibernateMethods {
@@ -39,11 +39,12 @@ public class HibernateMethods {
 
         }catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-        return false;
+
     }
 
-    public int checkId(String username) {
+    public Login checkId(String username) {
 
 
         try{
@@ -55,12 +56,57 @@ public class HibernateMethods {
                     .createNamedQuery("get_id_by_Login_username", Login.class)
                     .setParameter("username", username).getSingleResult();
 
-            return userId.getId();
+            transaction.commit();
+            session.close();
+
+            return userId;
 
         }catch (Exception e) {
-                    e.printStackTrace();
+            e.printStackTrace();
+            return null;
         }
-        return 0;
+
+    }
+
+    public void addSession(String key, Login user_id) {
+
+        try{
+            SessionFactory sessionFactory = Config.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            hibernate.Session session1 = new hibernate.Session();
+            session1.setSession_key(key);
+            session1.setUser_id(user_id);
+            session.save(session1);
+
+            transaction.commit();
+            session.close();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            return ;
+        }
+
+    }
+
+    public void deleteSession(String sessionKey) {
+        try{
+            SessionFactory sessionFactory = Config.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            Query q = session.createQuery("delete Session where session_key = :sessionKey");
+            q.setParameter("sessionKey", sessionKey);
+            q.executeUpdate();
+
+
+            transaction.commit();
+            session.close();
+        }catch(Exception e) {
+            e.printStackTrace();
+            return ;
+        }
     }
 
 

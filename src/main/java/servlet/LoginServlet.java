@@ -1,5 +1,6 @@
 package servlet;
 
+import hibernate.Login;
 import model.HibernateMethods;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +15,11 @@ import java.util.UUID;
 
 public class LoginServlet extends HttpServlet{
 
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/Login.jsp");
+        requestDispatcher.forward(req,resp);
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
@@ -23,27 +29,17 @@ public class LoginServlet extends HttpServlet{
 
         if (hibernateMethods.LoginCheck(username, password)) {
 
-            int userId = hibernateMethods.checkId(username);
+            Login userId = hibernateMethods.checkId(username);
 
             HttpSession session = req.getSession();
             String sessionKey = UUID.randomUUID().toString();
             session.setAttribute("sessionKey", sessionKey);
+            hibernateMethods.addSession(sessionKey, userId);
 
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/Login.jsp");
+            requestDispatcher.forward(req, resp);
 
         }
-        }
 
-
-
-
-//        if (password.equals("1234")) {
-//            HttpSession session = req.getSession();
-//            session.setAttribute("sessionKey", "random-string");
-//            PrintWriter writer = resp.getWriter();
-//            writer.println("Welcome Barack!");
-//            return;
-//        }
-
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/newUser.jsp");
-        requestDispatcher.forward(req, resp);
+    }
 }

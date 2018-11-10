@@ -215,3 +215,8 @@ create table session (id int primary key auto_increment
 ,user_id int not null
 ,constraint session_user_id_fk
   foreign key (user_id) references login (id));
+
+insert into Session (session_key, user_id) values (:session_key, :user_id)
+
+alter table address
+  drop column id;

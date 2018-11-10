@@ -11,7 +11,11 @@ import javax.persistence.*;
         ),
         @NamedQuery(
                 name = "add_session",
-                query = "insert into Session (session_key, user_id)"
+                query = "insert into Session (session_key, user_id) values (:session_key, :user_id)"
+        ),
+        @NamedQuery(
+                name = "delete_session",
+                query = "delete Session s from s where s.session_key = :session_key"
         )
 })
 public class Session {
