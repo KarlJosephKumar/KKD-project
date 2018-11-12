@@ -23,24 +23,26 @@ public class Main {
                     .createNamedQuery("get_id_by_Login_username", Login.class)
                     .setParameter("username", username).getSingleResult();
 //
-//            Set<Login> users = new HashSet<>();
-//            users.add(userId);
-//            hibernate.Session session1 = new hibernate.Session(UUID.randomUUID().toString());
-//            session1.setUser(users);
-//
-//            session.saveOrUpdate(session1);
+            Set<Login> users = new HashSet<>();
+            users.add(userId);
+            hibernate.Session session1 = new hibernate.Session(UUID.randomUUID().toString());
+            session1.setUser(users);
+
+            session.saveOrUpdate(session1);
+
+
 //            session.getTransaction().commit();
-            session.persist(userId);
-            hibernate.Session session1 = session
-                    .createNamedQuery("get_session_by_key", hibernate.Session.class)
-                    .setParameter("session_key", "57c5eba9-f31b-483e-8d15-61ec302bdc3a").getSingleResult();
+//            session.persist(userId);
+//            hibernate.Session session1 = session
+//                    .createNamedQuery("get_session_by_key", hibernate.Session.class)
+//                    .setParameter("session_key", "57c5eba9-f31b-483e-8d15-61ec302bdc3a").getSingleResult();
 //                    .createNamedQuery("get_session_by_key", hibernate.Session.class)
 //                    .setParameter("session_key","57c5eba9-f31b-483e-8d15-61ec302bdc3a");
 
-            System.out.println(userId);
-            for (Login user : session1.getUser()) {
-                System.out.println(user);
-            }
+            System.out.println(session1);
+//            for (Login user : session1.getUser()) {
+//                System.out.println(user);
+//            }
 //            transaction.commit();
             session.close();
             //session.disconnect();

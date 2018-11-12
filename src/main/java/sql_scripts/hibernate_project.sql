@@ -215,3 +215,14 @@ create table session (id int primary key auto_increment
 
 SELECT * FROM a LEFT JOIN b ON a.id = b.id WHERE b.amount > 150;
 SELECT * FROM a LEFT JOIN b ON a.id = b.id AND b.amount > 150;
+
+CREATE TABLE session_login (
+  login_id int(6) NOT NULL,
+  session_id int(6) NOT NULL,
+  KEY login (login_id),
+  KEY session (session_id),
+  CONSTRAINT login FOREIGN KEY (login_id) REFERENCES login (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT session FOREIGN KEY (session_id) REFERENCES session (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+select * from session_login;
