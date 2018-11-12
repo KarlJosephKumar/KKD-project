@@ -211,12 +211,7 @@ create table login (id int primary key auto_increment
 ,password varchar(40) not null);
 
 create table session (id int primary key auto_increment
-,session_key varchar(50) not null unique
-,user_id int not null
-,constraint session_user_id_fk
-  foreign key (user_id) references login (id));
+,session_key varchar(50) not null unique);
 
-insert into Session (session_key, user_id) values (:session_key, :user_id)
-
-alter table address
-  drop column id;
+SELECT * FROM a LEFT JOIN b ON a.id = b.id WHERE b.amount > 150;
+SELECT * FROM a LEFT JOIN b ON a.id = b.id AND b.amount > 150;

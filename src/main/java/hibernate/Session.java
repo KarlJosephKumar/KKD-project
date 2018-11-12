@@ -1,6 +1,9 @@
 package hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "session")
@@ -10,15 +13,18 @@ import javax.persistence.*;
                 query = "select s from Session s where id = :id"
         ),
         @NamedQuery(
-                name = "add_session",
-                query = "insert into Session (session_key, user_id) values (:session_key, :user_id)"
+                name = "get_session_by_key",
+                query = "select s from Session s where session_key = :session_key"
         ),
         @NamedQuery(
-                name = "delete_session",
-                query = "delete Session s from s where s.session_key = :session_key"
+                name = "get_session_by_user",
+                query = "select s from Session s where user = :user"
         )
 })
-public class Session {
+public class Session  {
+
+    private static final long serialVersionUID = -1798070786993154676L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -26,15 +32,24 @@ public class Session {
     @Column(name = "session_key")
     private String session_key;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Login user_id;
+    @JoinTable
+    @OneToMany
+    private Set<Login> user;
+
+    public Session(String session_key) {
+        this.session_key = session_key;
+    }
+
+    public Session() {
+    }
+
 
     @Override
     public String toString() {
-        return "hibernate.Session{" +
+        return "Session{" +
                 "id=" + id +
                 ", session_key='" + session_key + '\'' +
-                ", login=" + user_id.getId() +
+                ", user=" + user +
                 '}';
     }
 
@@ -54,8 +69,15 @@ public class Session {
         this.session_key = session_key;
     }
 
-    public void setUser_id(Login user_id) {
-        this.user_id = user_id;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
+    public Set<Login> getUser() {
+        return user;
+    }
+
+    public void setUser(Set<Login> user) {
+        this.user = user;
+    }
 }

@@ -7,7 +7,7 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = "get_all_by_Course_id",
-                query = "select s from Course s where = :id "
+                query = "select s from Course s where id = :id "
         ),
         @NamedQuery(
                 name = "get_all_Course_id",

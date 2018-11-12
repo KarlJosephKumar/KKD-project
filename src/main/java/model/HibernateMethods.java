@@ -31,7 +31,7 @@ public class HibernateMethods {
             Login userPassword = session
                     .createNamedQuery("get_password_by_Login_username", Login.class)
                     .setParameter("username", username).getSingleResult();
-            if (userPassword.equals(password)) {
+            if (userPassword.getPassword().equals(password)) {
                 return true;
             } else{
                 return false;
@@ -56,8 +56,7 @@ public class HibernateMethods {
                     .createNamedQuery("get_id_by_Login_username", Login.class)
                     .setParameter("username", username).getSingleResult();
 
-            transaction.commit();
-            session.close();
+
 
             return userId;
 
@@ -77,12 +76,12 @@ public class HibernateMethods {
 
             hibernate.Session session1 = new hibernate.Session();
             session1.setSession_key(key);
-            session1.setUser_id(user_id);
+//            session1.setUser_id(user_id);
+
             session.save(session1);
 
-            transaction.commit();
-            session.close();
 
+            session.getTransaction().commit();
         } catch(Exception e) {
             e.printStackTrace();
             return ;
@@ -101,8 +100,7 @@ public class HibernateMethods {
             q.executeUpdate();
 
 
-            transaction.commit();
-            session.close();
+
         }catch(Exception e) {
             e.printStackTrace();
             return ;

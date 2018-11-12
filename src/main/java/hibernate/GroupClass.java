@@ -8,12 +8,12 @@ import java.util.Set;
 @Entity(name = "JoinTableStudentClass")
 @Table(name= "class")
 
-@NamedQueries({
-        @NamedQuery(
-                name = "get_all_by_Class_id",
-                query = "select r from GroupClass r where id = :id"
-        )
-})
+//@NamedQueries({
+//        @NamedQuery(
+//                name = "get_all_by_Class_id",
+//                query = "select r from GroupClass r where id = :id"
+//        )
+//})
 
 public class GroupClass implements Serializable {
 

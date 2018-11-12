@@ -1,20 +1,23 @@
 package hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "login")
 @NamedQueries({
         @NamedQuery(
                 name = "get_password_by_Login_username",
-                query = "select l.password from Login l where username = :username"
+                query = "select l from Login l where username = :username"
         ),
         @NamedQuery(
                 name = "get_id_by_Login_username",
-                query = "select l.id from Login l where username = :username"
+                query = "select l from Login l where username = :username"
         )
 })
-public class Login {
+public class Login implements Serializable {
+
+    private static final long serialVersionUID = -6790693372846798580L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +27,7 @@ public class Login {
     private String username;
 
     @Column(name = "password")
-    private int password;
+    private String password;
 
     public int getId() {
         return id;
@@ -42,11 +45,20 @@ public class Login {
         this.username = username;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Login{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
