@@ -2,10 +2,14 @@ package model;
 
 import hibernate.Config;
 import hibernate.Login;
+import hibernate.SessionLogin;
+import javafx.scene.control.Alert;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import java.util.UUID;
 
 
 public class HibernateMethods {
@@ -22,7 +26,7 @@ public class HibernateMethods {
         return hibernateMethods;
     }
 
-    public boolean LoginCheck(String username, String password) {
+    public boolean loginCheck(String username, String password) {
         try {
             SessionFactory sessionFactory = Config.getSessionFactory();
             Session session = sessionFactory.openSession();
@@ -52,13 +56,10 @@ public class HibernateMethods {
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
 
-            Login userId = session
+
+            return session
                     .createNamedQuery("get_id_by_Login_username", Login.class)
                     .setParameter("username", username).getSingleResult();
-
-
-
-            return userId;
 
         }catch (Exception e) {
             e.printStackTrace();
@@ -67,24 +68,28 @@ public class HibernateMethods {
 
     }
 
-    public void addSession(String key, Login user_id) {
+    public void addSession(Login user_id) {
 
         try{
             SessionFactory sessionFactory = Config.getSessionFactory();
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
 
+            SessionLogin sessionLogin = new SessionLogin();
             hibernate.Session session1 = new hibernate.Session();
-            session1.setSession_key(key);
-//            session1.setUser_id(user_id);
-
+            session1.setSession_key(UUID.randomUUID().toString());
             session.save(session1);
+
+            sessionLogin.setSessionId(session1);
+            sessionLogin.setLoginId(user_id);
+            session.save(sessionLogin);
+
 
 
             session.getTransaction().commit();
         } catch(Exception e) {
             e.printStackTrace();
-            return ;
+
         }
 
     }
@@ -106,9 +111,4 @@ public class HibernateMethods {
             return ;
         }
     }
-
-
-
-
-
 }

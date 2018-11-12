@@ -1,21 +1,20 @@
 package hibernate;
 
 import javax.persistence.*;
-import java.io.Serializable;
+
 import java.util.Date;
-import java.util.Set;
 
 @Entity(name = "JoinTableStudentClass")
 @Table(name= "class")
 
-//@NamedQueries({
-//        @NamedQuery(
-//                name = "get_all_by_Class_id",
-//                query = "select r from GroupClass r where id = :id"
-//        )
-//})
+@NamedQueries({
+        @NamedQuery(
+                name = "get_all_by_Class_id",
+                query = "select r from hibernate.GroupClass r where id = :id"
+        )
+})
 
-public class GroupClass implements Serializable {
+public class GroupClass{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -94,7 +93,7 @@ public class GroupClass implements Serializable {
         return course;
     }
 
-    public void setCourse_id(Course course_id) {
+    public void setCourse_id(Course course) {
         this.course = course;
     }
 }

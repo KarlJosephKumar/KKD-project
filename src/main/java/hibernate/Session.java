@@ -1,9 +1,6 @@
 package hibernate;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "session")
@@ -15,15 +12,9 @@ import java.util.Set;
         @NamedQuery(
                 name = "get_session_by_key",
                 query = "select s from Session s where session_key = :session_key"
-        ),
-        @NamedQuery(
-                name = "get_session_by_user",
-                query = "select s from Session s where user = :user"
         )
 })
-public class Session  {
-
-    private static final long serialVersionUID = -1798070786993154676L;
+public class Session {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +22,6 @@ public class Session  {
 
     @Column(name = "session_key")
     private String session_key;
-
-    @JoinTable
-    @OneToMany
-    private Set<Login> user;
 
     public Session(String session_key) {
         this.session_key = session_key;
@@ -48,9 +35,7 @@ public class Session  {
     public String toString() {
         return "Session{" +
                 "id=" + id +
-                ", session_key='" + session_key + '\'' +
-                ", user=" + user +
-                '}';
+                ", session_key='" + session_key + '\'' + '}';
     }
 
     public int getId() {
@@ -69,15 +54,4 @@ public class Session  {
         this.session_key = session_key;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public Set<Login> getUser() {
-        return user;
-    }
-
-    public void setUser(Set<Login> user) {
-        this.user = user;
-    }
 }

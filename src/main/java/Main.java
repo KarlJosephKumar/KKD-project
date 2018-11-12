@@ -2,6 +2,8 @@
 import hibernate.Config;
 import hibernate.Login;
 import hibernate.Payments;
+import hibernate.SessionLogin;
+import model.HibernateMethods;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -17,29 +19,25 @@ public class Main {
             SessionFactory sessionFactory = Config.getSessionFactory();
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
+            HibernateMethods hibernateMethods = HibernateMethods.getInstance();
+            SessionLogin sessionLogin = new SessionLogin();
 
             String username = "karl";
             Login userId = session
                     .createNamedQuery("get_id_by_Login_username", Login.class)
                     .setParameter("username", username).getSingleResult();
 //
-            Set<Login> users = new HashSet<>();
-            users.add(userId);
-            hibernate.Session session1 = new hibernate.Session(UUID.randomUUID().toString());
-            session1.setUser(users);
-
-            session.saveOrUpdate(session1);
-
-
+//            hibernateMethods.addSession(userId);
+//
+//            session.saveOrUpdate(session1);
 //            session.getTransaction().commit();
 //            session.persist(userId);
 //            hibernate.Session session1 = session
 //                    .createNamedQuery("get_session_by_key", hibernate.Session.class)
-//                    .setParameter("session_key", "57c5eba9-f31b-483e-8d15-61ec302bdc3a").getSingleResult();
+//                    .setParameter("session_key", "f41d4ea2-5aa9-4e2c-8dab-4b999209d3eb").getSingleResult();
 //                    .createNamedQuery("get_session_by_key", hibernate.Session.class)
 //                    .setParameter("session_key","57c5eba9-f31b-483e-8d15-61ec302bdc3a");
 
-            System.out.println(session1);
 //            for (Login user : session1.getUser()) {
 //                System.out.println(user);
 //            }

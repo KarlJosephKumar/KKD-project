@@ -1,7 +1,7 @@
 package hibernate;
 
 import javax.persistence.*;
-import java.io.Serializable;
+
 
 @Entity
 @Table(name = "login")
@@ -15,9 +15,7 @@ import java.io.Serializable;
                 query = "select l from Login l where username = :username"
         )
 })
-public class Login implements Serializable {
-
-    private static final long serialVersionUID = -6790693372846798580L;
+public class Login  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
