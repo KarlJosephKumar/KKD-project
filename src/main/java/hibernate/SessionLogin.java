@@ -1,21 +1,21 @@
 package hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "session_login")
 @NamedQueries({
         @NamedQuery(
-                name = "get_session_login_by_id",
-                query = "select a from hibernate.SessionLogin a where id = :id"
+                name = "get_session_login_by_sessionId",
+                query = "select a from hibernate.SessionLogin a where sessionId = :sessionId"
 )
 })
 
-public class SessionLogin {
+public class SessionLogin implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     @JoinColumn(name = "session_id")
     @OneToOne
     private Session sessionId;
@@ -27,19 +27,11 @@ public class SessionLogin {
     @Override
     public String toString() {
         return "SessionLogin{" +
-                "id=" + id +
                 ", sessionId=" + sessionId +
                 ", loginId=" + loginId +
                 '}';
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Session getSessionId() {
         return sessionId;

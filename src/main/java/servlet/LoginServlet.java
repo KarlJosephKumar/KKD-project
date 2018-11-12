@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet{
             String sessionKey = UUID.randomUUID().toString();
             session.setAttribute("sessionKey", sessionKey);
             writer.println("Created Session");
-            hibernateMethods.addSession(userId);
+            hibernateMethods.addSession(userId, sessionKey);
             writer.println("Saved the Session");
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/Login.jsp");

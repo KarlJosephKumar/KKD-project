@@ -1,6 +1,9 @@
 package hibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "session")
@@ -12,9 +15,15 @@ import javax.persistence.*;
         @NamedQuery(
                 name = "get_session_by_key",
                 query = "select s from Session s where session_key = :session_key"
+        ),
+        @NamedQuery(
+                name = "get_session_by_user",
+                query = "select s from Session s where user = :user"
         )
 })
-public class Session {
+public class Session  {
+
+    private static final long serialVersionUID = -1798070786993154676L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

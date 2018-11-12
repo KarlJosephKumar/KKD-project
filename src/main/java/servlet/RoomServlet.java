@@ -10,6 +10,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 
-public class UserListServlet extends HttpServlet {
+public class RoomServlet extends HttpServlet {
 
 }

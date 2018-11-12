@@ -68,7 +68,7 @@ public class HibernateMethods {
 
     }
 
-    public void addSession(Login user_id) {
+    public void addSession(Login user_id, String sessionKey) {
 
         try{
             SessionFactory sessionFactory = Config.getSessionFactory();
@@ -77,12 +77,12 @@ public class HibernateMethods {
 
             SessionLogin sessionLogin = new SessionLogin();
             hibernate.Session session1 = new hibernate.Session();
-            session1.setSession_key(UUID.randomUUID().toString());
-            session.save(session1);
+            session1.setSession_key(sessionKey);
+            session.saveOrUpdate(session1);
 
             sessionLogin.setSessionId(session1);
             sessionLogin.setLoginId(user_id);
-            session.save(sessionLogin);
+            session.saveOrUpdate(sessionLogin);
 
 
 
