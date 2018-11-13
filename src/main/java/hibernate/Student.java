@@ -7,14 +7,18 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
-@Entity(name = "JoinTableStudentClass")
+@Entity
 @Table(name = "student")
-//@NamedQueries({
-//        @NamedQuery(
-//                name = "get_all_by_Student_id",
-//                query = "select s from Student s where id = :id"
-//        )
-//})
+@NamedQueries({
+        @NamedQuery(
+                name = "get_all_by_Student_id",
+                query = "select s from Student s where id = :id"
+        ),
+        @NamedQuery(
+                name= "get list of students",
+                query = "select s from Student s"
+        )
+})
 public class Student implements Serializable {
 
     @Id

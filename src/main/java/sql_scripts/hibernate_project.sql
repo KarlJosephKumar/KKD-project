@@ -226,3 +226,5 @@ CREATE TABLE session_login (
 );
 
 select * from session_login;
+
+delete from session where id = 4 ;

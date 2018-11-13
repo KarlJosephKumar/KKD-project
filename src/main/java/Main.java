@@ -1,8 +1,5 @@
 
-import hibernate.Config;
-import hibernate.Login;
-import hibernate.Payments;
-import hibernate.SessionLogin;
+import hibernate.*;
 import model.HibernateMethods;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -38,9 +36,16 @@ public class Main {
 //                    .createNamedQuery("get_session_by_key", hibernate.Session.class)
 //                    .setParameter("session_key","57c5eba9-f31b-483e-8d15-61ec302bdc3a");
 
-//            for (Login user : session1.getUser()) {
-//                System.out.println(user);
-//            }
+            List<Student> students = session
+                    .createNamedQuery("get list of students")
+                    .getResultList();
+
+
+
+
+            for (Student pupil : students) {
+                System.out.println(pupil);
+            }
 //            transaction.commit();
             session.close();
             //session.disconnect();

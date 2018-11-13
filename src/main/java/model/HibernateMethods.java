@@ -3,12 +3,14 @@ package model;
 import hibernate.Config;
 import hibernate.Login;
 import hibernate.SessionLogin;
+import hibernate.Student;
 import javafx.scene.control.Alert;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -111,4 +113,24 @@ public class HibernateMethods {
             return ;
         }
     }
+
+    public List<Student> getAllStudents() {
+        try{
+            SessionFactory sessionFactory = Config.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            List<Student> students = session
+                    .createNamedQuery("get list of students")
+                    .getResultList();
+
+            return students;
+
+        }catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
 }
