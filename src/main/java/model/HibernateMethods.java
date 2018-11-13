@@ -75,6 +75,7 @@ public class HibernateMethods {
         try{
             SessionFactory sessionFactory = Config.getSessionFactory();
             Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
 
             SessionLogin sessionLogin = new SessionLogin();
             hibernate.Session session1 = new hibernate.Session();
@@ -85,6 +86,7 @@ public class HibernateMethods {
             sessionLogin.setLoginId(user_id);
             session.saveOrUpdate(sessionLogin);
 
+            session.getTransaction().commit();
         } catch(Exception e) {
             e.printStackTrace();
 
