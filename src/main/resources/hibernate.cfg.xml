@@ -11,13 +11,14 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="hibernate.Address"/>
         <mapping class="hibernate.Room"/>
-        <mapping class="hibernate.Student"/>
+
         <mapping class="hibernate.Payments"/>
         <mapping class="hibernate.GroupClass"/>
         <mapping class="hibernate.Course"/>
         <mapping class="hibernate.Schedule"/>
         <mapping class="hibernate.Login"/>
         <mapping class="hibernate.Session"/>
-
+        <mapping class="hibernate.SessionLogin"/>
+        <mapping class="hibernate.Student"/>
     </session-factory>
 </hibernate-configuration>
