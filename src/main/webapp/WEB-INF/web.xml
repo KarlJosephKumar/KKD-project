@@ -14,7 +14,10 @@
         <servlet-name>Room</servlet-name>
         <servlet-class>servlet.RoomServlet</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>Students</servlet-name>
+        <servlet-class>servlet.StudentsServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -24,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>Room</servlet-name>
         <url-pattern>/room</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Students</servlet-name>
+        <url-pattern>/students</url-pattern>
     </servlet-mapping>
 
 </web-app>
