@@ -28,19 +28,15 @@ public class LoginServlet extends HttpServlet{
         HibernateMethods hibernateMethods = HibernateMethods.getInstance();
 
         if (hibernateMethods.loginCheck(username, password)) {
-            PrintWriter writer = resp.getWriter();
-            writer.println("Accepted Username and password");
 
             Login userId = hibernateMethods.checkId(username);
 
             HttpSession session = req.getSession();
             String sessionKey = UUID.randomUUID().toString();
             session.setAttribute("sessionKey", sessionKey);
-            writer.println("Created Session");
             hibernateMethods.addSession(userId, sessionKey);
-            writer.println("Saved the Session");
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/Login.jsp");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/NavigationView.jsp");
             requestDispatcher.forward(req, resp);
 
         }

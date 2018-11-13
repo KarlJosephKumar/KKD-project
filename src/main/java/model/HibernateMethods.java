@@ -86,8 +86,6 @@ public class HibernateMethods {
             sessionLogin.setLoginId(user_id);
             session.saveOrUpdate(sessionLogin);
 
-
-
             session.getTransaction().commit();
         } catch(Exception e) {
             e.printStackTrace();
