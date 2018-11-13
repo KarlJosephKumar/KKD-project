@@ -1,16 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
-  User: dinir
-  Date: 10-Nov-18
-  Time: 3:15 AM
+  User: Laptop
+  Date: 13.11.2018
+  Time: 20:40
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Room</title>
+    <title>Navigation</title>
 </head>
 <body>
 hi
+<button type="submit">Students</button>
+
 </body>
 </html>
