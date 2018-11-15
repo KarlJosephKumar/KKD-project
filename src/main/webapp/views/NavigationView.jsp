@@ -11,7 +11,7 @@
     <title>Navigation</title>
 </head>
 <body>
-<button type="submit">Students</button>
+<a href="http://localhost:8080/KKD-project/students" type="button" > Students</a>
 
 </body>
 </html>

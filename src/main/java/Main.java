@@ -17,13 +17,13 @@ public class Main {
             SessionFactory sessionFactory = Config.getSessionFactory();
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
-            HibernateMethods hibernateMethods = HibernateMethods.getInstance();
-            SessionLogin sessionLogin = new SessionLogin();
+
 
             String username = "karl";
             Login userId = session
                     .createNamedQuery("get_id_by_Login_username", Login.class)
                     .setParameter("username", username).getSingleResult();
+
 //
 //            hibernateMethods.addSession(userId);
 //
@@ -36,16 +36,18 @@ public class Main {
 //                    .createNamedQuery("get_session_by_key", hibernate.Session.class)
 //                    .setParameter("session_key","57c5eba9-f31b-483e-8d15-61ec302bdc3a");
 
-            List<Student> students = session
-                    .createNamedQuery("get list of students")
-                    .getResultList();
+//            List<Student> students = session
+//                    .createNamedQuery("get list of students")
+//                    .getResultList();
 
+            SessionLogin sessionLogin1 = session
+                    .createNamedQuery("get_session_login_by_sessionId", SessionLogin.class)
+                    .setParameter("sessionKey", "69e15335-db8e-4ece-8a86-888eb6a8d722").getSingleResult();
 
-
-
-            for (Student pupil : students) {
-                System.out.println(pupil);
-            }
+            System.out.println(sessionLogin1);
+//            for (Student pupil : students) {
+//                System.out.println(pupil);
+//            }
 //            transaction.commit();
             session.close();
             //session.disconnect();

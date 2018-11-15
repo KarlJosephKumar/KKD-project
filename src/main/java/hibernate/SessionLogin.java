@@ -8,7 +8,7 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(
                 name = "get_session_login_by_sessionId",
-                query = "select a from hibernate.SessionLogin a where sessionId = :sessionId"
+                query = "select a from hibernate.SessionLogin a where sessionId.session_key = :sessionKey"
 )
 })
 

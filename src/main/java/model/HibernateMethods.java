@@ -94,17 +94,43 @@ public class HibernateMethods {
 
     }
 
-    public void deleteSession(String sessionKey) {
+    public boolean checkForSession(Object sessionKey, Login userId) {
         try{
             SessionFactory sessionFactory = Config.getSessionFactory();
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
 
-            Query q = session.createQuery("delete Session where session_key = :sessionKey");
-            q.setParameter("sessionKey", sessionKey);
-            q.executeUpdate();
+            SessionLogin sessionLogin = session
+                    .createNamedQuery("get_session_login_by_sessionId", SessionLogin.class)
+                    .setParameter("sessionKey", String.valueOf(sessionKey) ).getSingleResult();
+            Login user = sessionLogin.getLoginId();
 
+            if (user.getId() == userId.getId()) {
+                return true;
+            }
 
+            return false;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void deleteSession(Object sessionKey) {
+        try{
+            SessionFactory sessionFactory = Config.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            SessionLogin sessionLogin = session
+                    .createNamedQuery("delete session by sessionKey", SessionLogin.class)
+                    .setParameter("sessionKey", String.valueOf(sessionKey) ).getSingleResult();
+
+            session.saveOrUpdate(sessionLogin);
+
+            session.getTransaction().commit();
+
+            session.close();
 
         }catch(Exception e) {
             e.printStackTrace();

@@ -17,8 +17,8 @@ import java.util.Set;
                 query = "select s from Session s where session_key = :session_key"
         ),
         @NamedQuery(
-                name = "get_session_by_user",
-                query = "select s from Session s where user = :user"
+                name = "delete session by sessionKey",
+                query = "delete Session where session_key = :sessionKey"
         )
 })
 public class Session  {

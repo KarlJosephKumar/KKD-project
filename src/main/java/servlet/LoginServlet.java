@@ -34,10 +34,13 @@ public class LoginServlet extends HttpServlet{
             HttpSession session = req.getSession();
             String sessionKey = UUID.randomUUID().toString();
             session.setAttribute("sessionKey", sessionKey);
+            session.setAttribute("userId", userId);
             hibernateMethods.addSession(userId, sessionKey);
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/NavigationView.jsp");
-            requestDispatcher.forward(req, resp);
+            resp.sendRedirect("nav");
+
+//            RequestDispatcher requestDispatcher = req.getRequestDispatcher("views/NavigationView.jsp");
+//            requestDispatcher.forward(req, resp);
 
         }
 

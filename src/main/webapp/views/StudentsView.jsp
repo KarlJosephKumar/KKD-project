@@ -10,9 +10,12 @@
 <html>
 <head>
     <title>Students List</title>
+    <link rel="stylesheet" type="text/css"href="views/sheet.css">
 </head>
 <body>
-<table style="width: 100%">
+<h1>List of Students with personal info</h1> <button name="logout" method = "post">Logout</button>
+<br/>
+<table style="width: 50%">
     <tr>
         <th>Fullname</th>
         <th>Date of Birth</th>

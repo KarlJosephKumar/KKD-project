@@ -76,7 +76,7 @@
                     <artifactId>tomcat7-maven-plugin</artifactId>
                     <version>2.2</version>
                     <configuration>
-                        <!--      To direct to a path             --> <path></path>
+                        <!--To direct to a path --> <path></path>
                     </configuration>
                 </plugin>
 
