@@ -11,7 +11,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class CreateAccountServlet extends HttpServlet {
     @Override
@@ -33,9 +36,10 @@ public class CreateAccountServlet extends HttpServlet {
         if(!hibernateMethods.checkIfUserExist(username)) {
             hibernateMethods.addAccount(username, password);
             try {
-                String[] date = req.getParameterValues("birthday");
-                SimpleDateFormat bdaydate = new SimpleDateFormat("yyyy-mm-dd");
-                Date birthday = bdaydate.parse(date[0]);
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                format.setTimeZone(TimeZone.getTimeZone("PST"));
+                String date = req.getParameter("birthday");
+                Date birthday = format.parse(date);
                 hibernateMethods.addStudent(name, surname, birthday, nationality, username);
             } catch (ParseException e) {
                 e.printStackTrace();
