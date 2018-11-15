@@ -47,6 +47,28 @@ public class HibernateMethods {
 
     }
 
+    public boolean checkIfUserExist(String username){
+        try{
+            SessionFactory sessionFactory = Config.getSessionFactory();
+            Session session = sessionFactory.openSession();
+            Transaction transaction = session.beginTransaction();
+
+            Login user = session
+                    .createNamedQuery("check_if_username_exist", Login.class)
+                    .setParameter("username", username).getSingleResult();
+            if(user.getUsername().equals(username)){
+                return true;
+            } else{
+                return false;
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
     public Login checkId(String username) {
 
 
@@ -132,10 +154,11 @@ public class HibernateMethods {
         Transaction transaction = session.beginTransaction();
 
         Login login = new Login();
-        login.setUsername(username);
-        login.setPassword(password);
-        session.saveOrUpdate(login);
-        session.getTransaction().commit();
+            login.setUsername(username);
+            login.setPassword(password);
+            session.saveOrUpdate(login);
+            session.getTransaction().commit();
+
     }
 
     public void addStudent(String name, String surname, Date birthday, String nationality, String username){
