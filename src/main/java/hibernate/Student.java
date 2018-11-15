@@ -2,10 +2,9 @@ package hibernate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.security.acl.Group;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "student")
@@ -37,6 +36,9 @@ public class Student implements Serializable {
     @Column(name = "nationality")
     private String nationality;
 
+    @JoinColumn(name = "login_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    private Login login_id;
 
     @ManyToMany(mappedBy = "student")
     private List<Payments> payments;
@@ -103,6 +105,14 @@ public class Student implements Serializable {
 
     public void setGroupClass(List<GroupClass> groupClass) {
         this.groupClass = groupClass;
+    }
+
+    public Login getLogin_id() {
+        return login_id;
+    }
+
+    public void setLogin_id(Login login_id) {
+        this.login_id = login_id;
     }
 
     @Override

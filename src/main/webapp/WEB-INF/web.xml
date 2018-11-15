@@ -10,35 +10,48 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>servlet.LoginServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>Room</servlet-name>
-        <servlet-class>servlet.RoomServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Students</servlet-name>
-        <servlet-class>servlet.StudentsServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Nav</servlet-name>
-        <servlet-class>servlet.NavigationViewServlet</servlet-class>
-    </servlet>
-
-
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Room</servlet-name>
+        <servlet-class>servlet.RoomServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Room</servlet-name>
         <url-pattern>/room</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Students</servlet-name>
+        <servlet-class>servlet.StudentsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Students</servlet-name>
         <url-pattern>/students</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Nav</servlet-name>
+        <servlet-class>servlet.NavigationViewServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Nav</servlet-name>
         <url-pattern>/nav</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateAccount</servlet-name>
+        <servlet-class>servlet.CreateAccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateAccount</servlet-name>
+        <url-pattern>/create-account</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
 
 </web-app>

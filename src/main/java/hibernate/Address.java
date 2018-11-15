@@ -18,6 +18,7 @@ public class Address {
     @Column(name = "city")
     private String nameOfCity;
 
+    @Column(name = "street")
     private String street;
 
     @Column(name = "number")

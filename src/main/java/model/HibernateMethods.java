@@ -4,14 +4,11 @@ import hibernate.Config;
 import hibernate.Login;
 import hibernate.SessionLogin;
 import hibernate.Student;
-import javafx.scene.control.Alert;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-
+import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 
 public class HibernateMethods {
@@ -58,7 +55,6 @@ public class HibernateMethods {
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
 
-
             return session
                     .createNamedQuery("get_id_by_Login_username", Login.class)
                     .setParameter("username", username).getSingleResult();
@@ -104,38 +100,61 @@ public class HibernateMethods {
                     .createNamedQuery("get_session_login_by_sessionId", SessionLogin.class)
                     .setParameter("sessionKey", String.valueOf(sessionKey) ).getSingleResult();
             Login user = sessionLogin.getLoginId();
-
             if (user.getId() == userId.getId()) {
                 return true;
             }
-
             return false;
         } catch(Exception e) {
             e.printStackTrace();
             return false;
         }
     }
-
     public void deleteSession(Object sessionKey) {
-        try{
+        try {
             SessionFactory sessionFactory = Config.getSessionFactory();
             Session session = sessionFactory.openSession();
             Transaction transaction = session.beginTransaction();
-
             SessionLogin sessionLogin = session
                     .createNamedQuery("delete session by sessionKey", SessionLogin.class)
-                    .setParameter("sessionKey", String.valueOf(sessionKey) ).getSingleResult();
-
+                    .setParameter("sessionKey", String.valueOf(sessionKey)).getSingleResult();
             session.saveOrUpdate(sessionLogin);
-
             session.getTransaction().commit();
-
             session.close();
-
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            return ;
         }
+
+    }
+
+    public void addAccount(String username, String password){
+        SessionFactory sessionFactory = Config.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Login login = new Login();
+        login.setUsername(username);
+        login.setPassword(password);
+        session.saveOrUpdate(login);
+        session.getTransaction().commit();
+    }
+
+    public void addStudent(String name, String surname, Date birthday, String nationality, String username){
+        SessionFactory sessionFactory = Config.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Login loginId = session
+                .createNamedQuery("get_id_by_Login_username", Login.class)
+                .setParameter("username", username).getSingleResult();
+
+        Student student = new Student();
+        student.setName(name);
+        student.setSurname(surname);
+        student.setDate_of_birth(birthday);
+        student.setNationality(nationality);
+        student.setLogin_id(loginId);
+        session.saveOrUpdate(student);
+        session.getTransaction().commit();
     }
 
     public List<Student> getAllStudents() {
