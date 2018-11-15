@@ -17,6 +17,10 @@ import javax.persistence.*;
         @NamedQuery(
                 name = "check_if_username_exist",
                 query = "select l from Login l where username = :username"
+        ),
+        @NamedQuery(
+                name= "change_password_by_id",
+                query = "update Login l set l.password = :password where l.id = :id"
         )
 })
 public class Login  {

@@ -4,9 +4,11 @@ import hibernate.Config;
 import hibernate.Login;
 import hibernate.SessionLogin;
 import hibernate.Student;
+import org.hibernate.QueryException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import javax.persistence.NoResultException;
 import java.util.Date;
@@ -75,8 +77,6 @@ public class HibernateMethods {
     }
 
     public Login checkId(String username) {
-
-
         try{
             SessionFactory sessionFactory = Config.getSessionFactory();
             Session session = sessionFactory.openSession();
@@ -163,6 +163,19 @@ public class HibernateMethods {
             login.setPassword(password);
             session.saveOrUpdate(login);
             session.getTransaction().commit();
+
+    }
+    public void changePassword(Login userId, String password){
+        SessionFactory sessionFactory = Config.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query changePasswordQuery = session.createQuery("update Login l set l.password = :password where id = :id");
+                changePasswordQuery.setParameter("password", password);
+                changePasswordQuery.setParameter("id", userId.getId());
+                changePasswordQuery.executeUpdate();
+
+        session.getTransaction().commit();
 
     }
 
