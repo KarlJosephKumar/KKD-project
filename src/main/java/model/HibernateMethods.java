@@ -7,6 +7,8 @@ import hibernate.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+import javax.persistence.NoResultException;
 import java.util.Date;
 import java.util.List;
 
@@ -62,11 +64,14 @@ public class HibernateMethods {
                 return false;
             }
 
-        }catch (Exception e) {
+        }catch (NoResultException e){
+            //Leave this empty, logic works.
+        }
+        catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-
+        return false;
     }
 
     public Login checkId(String username) {
