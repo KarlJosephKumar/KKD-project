@@ -14,9 +14,3 @@ Entities (create hibernate class for each table using @Entities)
 *********************************************************************
 ---------------------------------------------------------------------------------------
 *********************************************************************
-					BUSINESS LOGIC
-
-	Create a group
-	Assign a group to course
-	How much money I get from course(add invoice value to "hibernate.Payments")
-	
